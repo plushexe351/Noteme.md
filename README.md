@@ -24,26 +24,22 @@ A powerful and intuitive markdown-based note-taking application with AI-assisted
 
 
 ### Clone the repository
+
 ``` bash
 git clone https://github.com/plushexe351/noteme.md.git
 cd noteme.md
 ```
 ### Start client
-### Install dependencies
+
 ```bash
 cd client
 npm install
 ```
+### Start server
 
-
-# Start the development server
-`npm start`
-
-# Navigate to the backend folder
-`cd ../server`
-
-# Install dependencies
-`npm install`
-
-# Start the backend server
-`npm run dev`
+```bash
+npm start
+cd ../server
+npm install
+npm start
+```

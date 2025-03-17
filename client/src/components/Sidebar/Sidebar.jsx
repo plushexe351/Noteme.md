@@ -15,7 +15,6 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.js";
 import { toast } from "react-toastify";
-import SettingsModal from "../Settings/SettingsModal.jsx";
 import API_BASE_URL from "../../config.js";
 
 const Sidebar = () => {

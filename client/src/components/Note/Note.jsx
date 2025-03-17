@@ -370,7 +370,7 @@ const Note = () => {
             hidden
           />
 
-          <Download className="icon" />
+          {/* <Download className="icon" /> */}
         </div>
         <div className="search-notes">
           <Search className="icon" />

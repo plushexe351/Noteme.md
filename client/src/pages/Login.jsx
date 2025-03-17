@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.scss";
 import {
   ArrowDown,
@@ -28,17 +28,17 @@ import API_BASE_URL from "../config.js";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {
-    setCurrentUser,
-    setContent,
-    setCurrentNote,
-    setShowTempNote,
-    setNotes,
-    setCategories,
-  } = useContext(AuthContext);
+  const { setCurrentUser, setCurrentNote, setNotes, setCategories } =
+    useContext(AuthContext);
+  useEffect(() => {
+    setNotes([]);
+    setCategories([]);
+  }, []);
 
-  setNotes([]);
-  setCategories([]);
+  useEffect(() => {
+    const video = document.querySelector("video");
+    if (video) video.play();
+  }, []);
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -82,9 +82,7 @@ const Login = () => {
         console.error("Error during sign-in:", error);
       });
   };
-  setTimeout(() => {
-    document.querySelector("video")?.play();
-  }, 1000);
+
   return (
     <div className="Login">
       <div className="navbar">
@@ -204,10 +202,20 @@ const Login = () => {
       <footer>
         <p>&copy; 2024 | Ushnish Tapaswi</p>
         <div className="social-links">
-          <GitHub />
-          <Facebook />
-          <Instagram />
-          <Linkedin />
+          <a
+            href="https://github.com/plushexe351"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            <GitHub />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ushnish-tapaswi-719489267/"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            <Linkedin />
+          </a>
         </div>
       </footer>
     </div>

@@ -1,24 +1,20 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
+
 import { AuthContext } from "../../context/AuthContext";
+
+// icons
 import {
   Archive,
   ChevronLeft,
-  Circle,
-  Download,
   Edit,
-  Edit2,
   Eye,
   FilePlus,
-  Folder,
   Heart,
   List,
-  Menu,
-  MinusCircle,
-  RefreshCcw,
-  RefreshCw,
   Search,
-  Star,
 } from "react-feather";
+import { Sparkles } from "lucide-react";
+
 import debounce from "lodash.debounce";
 import "./ToggleWritingTools.css";
 import { toast } from "react-toastify";
@@ -31,37 +27,36 @@ import WritingTools from "./WritingTools";
 import "./WritingTools.scss";
 import axios from "axios";
 import SpinLoader from "../SpinLoader/SpinLoader";
-import { Sparkle, SparkleIcon, Sparkles } from "lucide-react";
 import API_BASE_URL from "../../config";
+import { UIContext } from "../../context/UIContext";
+import { NotesContext } from "../../context/NotesContext";
+import { WritingToolsContext } from "../../context/WritingToolsContext";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const geminiApiKey = "AIzaSyBM4VjictreZGjd4NplDnb06ETrImsAKxU";
 
 const Note = () => {
+  const { currentUser } = useContext(AuthContext);
+
+  const { setShowSidebar, setShowNotesList, showTempNote, setShowTempNote } =
+    useContext(UIContext);
   const {
-    currentUser,
-    showTempNote,
-    setShowTempNote,
-    currentNote,
-    setCurrentNote,
-    setNotes,
-    notes,
-    status,
-    setStatus,
-    content,
-    writingToolsMode,
-    setWritingToolsMode,
-    setContent,
-    setCurrentCategory,
     viewMode,
     setViewMode,
     searchedNote,
     handleSearchNote,
-    showNotesList,
-    setShowNotesList,
-    showSidebar,
-    setShowSidebar,
-  } = useContext(AuthContext);
+    content,
+    setContent,
+    notes,
+    setNotes,
+    currentNote,
+    setCurrentNote,
+    setCurrentCategory,
+    status,
+    setStatus,
+  } = useContext(NotesContext);
 
+  const { writingToolsMode, setWritingToolsMode } =
+    useContext(WritingToolsContext);
   const GEMINI_INSTRUCTIONS_PROMPT = `Return formatted text by converting it to markdown`;
   const [loading, setLoading] = useState(false);
 
@@ -369,8 +364,6 @@ const Note = () => {
             id="import"
             hidden
           />
-
-          {/* <Download className="icon" /> */}
         </div>
         <div className="search-notes">
           <Search className="icon" />

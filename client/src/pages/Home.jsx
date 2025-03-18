@@ -1,15 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { UIContext } from "../context/UIContext";
 import Sidebar from "../components/Sidebar/Sidebar";
 import NotesList from "../components/NotesList/NotesList";
 import Note from "../components/Note/Note";
 import SettingsModal from "../components/Settings/SettingsModal";
+import { WritingToolsContext } from "../context/WritingToolsContext";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setWritingToolsMode, currentUser, settingsOpen, loading } =
-    useContext(AuthContext);
+  const { currentUser, loading } = useContext(AuthContext);
+
+  const { setWritingToolsMode } = useContext(WritingToolsContext);
+  const { settingsOpen } = useContext(UIContext);
 
   useEffect(() => {
     if (!loading && !currentUser) {

@@ -11,11 +11,11 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import API_BASE_URL from "../../config";
+import { UIContext } from "../../context/UIContext";
+import { NotesContext } from "../../context/NotesContext";
 
 const NotesList = () => {
   const {
-    currentUser,
-    setShowTempNote,
     setCurrentNote,
     showTempNote,
     setNotes,
@@ -26,12 +26,13 @@ const NotesList = () => {
     setViewMode,
     setCurrentCategory,
     searchedNote,
-    setSearchedNote,
     handleSearchNote,
-    setShowNotesList,
-    showNotesList,
-    setShowSidebar,
-  } = useContext(AuthContext);
+  } = useContext(NotesContext);
+
+  const { currentUser } = useContext(AuthContext);
+
+  const { setShowNotesList, showNotesList, setShowSidebar, setShowTempNote } =
+    useContext(UIContext);
 
   const fetchNotes = useCallback(async () => {
     if (!currentUser) return;

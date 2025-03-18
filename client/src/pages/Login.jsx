@@ -5,11 +5,9 @@ import {
   ArrowUpRight,
   CheckCircle,
   Edit2,
-  Facebook,
   FolderPlus,
   GitHub,
   Globe,
-  Instagram,
   Linkedin,
   Search,
   Settings,
@@ -25,11 +23,12 @@ import { toast } from "react-toastify";
 import heroMedia from "../assets/hero-media.mp4";
 import poster from "../assets/hero-img.png";
 import API_BASE_URL from "../config.js";
+import { NotesContext } from "../context/NotesContext.js";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setCurrentUser, setCurrentNote, setNotes, setCategories } =
-    useContext(AuthContext);
+  const { setCurrentNote, setNotes, setCategories } = useContext(NotesContext);
+  const { setCurrentUser } = useContext(AuthContext);
   useEffect(() => {
     setNotes([]);
     setCategories([]);
@@ -44,8 +43,6 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-
-        // console.log("Firebase User:", user);
 
         setCurrentUser({
           uid: user.uid,
@@ -93,9 +90,6 @@ const Login = () => {
               .md <ArrowDown className="icon" />
             </span>
           </div>
-          {/* <nav className="nav-items">
-            <a href="">Login</a>
-          </nav> */}
         </header>
         <div className="auth-provider-container">
           <button className="signin" onClick={signInWithGoogle}>

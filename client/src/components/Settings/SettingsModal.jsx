@@ -3,9 +3,11 @@ import "./Settings.scss";
 import { Mail, User } from "react-feather";
 
 import { AuthContext } from "../../context/AuthContext";
+import { UIContext } from "../../context/UIContext";
 
 const SettingsModal = () => {
-  const { currentUser, setSettingsOpen, notes } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+  const { setSettingsOpen } = useContext(UIContext);
 
   return (
     <div className="Settings">

@@ -31,17 +31,19 @@ import Prism from "prismjs";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-python";
 import { marked } from "marked";
+import { NotesContext } from "../../context/NotesContext";
+import { WritingToolsContext } from "../../context/WritingToolsContext";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const geminiApiKey = process.env.REACT_APP_GEMINI_API_KEY;
 const WritingTools = () => {
-  const { setWritingToolsMode } = useContext(AuthContext);
   const [messageMood, setMessageMood] = useState("");
   const [messageType, setMessageType] = useState("");
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
-  const { setResultGlobal } = useContext(AuthContext);
-  const { content, setContent } = useContext(AuthContext);
+  const { setResultGlobal, setWritingToolsMode } =
+    useContext(WritingToolsContext);
+  const { content, setContent } = useContext(NotesContext);
   const [loading, setLoading] = useState(false);
 
   const resultRef = useRef(null);

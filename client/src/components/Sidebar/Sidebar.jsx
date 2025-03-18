@@ -16,11 +16,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.js";
 import { toast } from "react-toastify";
 import API_BASE_URL from "../../config.js";
+import { UIContext } from "../../context/UIContext.js";
+import { NotesContext } from "../../context/NotesContext.js";
 
 const Sidebar = () => {
   const {
-    currentUser,
-    setShowTempNote,
     setCurrentNote,
     notes,
     currentCategory,
@@ -31,12 +31,16 @@ const Sidebar = () => {
     fetchCategories,
     setViewMode,
     searchedNote,
-    settingsOpen,
+  } = useContext(NotesContext);
+
+  const { currentUser } = useContext(AuthContext);
+  const {
+    setShowTempNote,
     setSettingsOpen,
     showSidebar,
     setShowSidebar,
     setShowNotesList,
-  } = useContext(AuthContext);
+  } = useContext(UIContext);
 
   const [showCategoryInput, setShowCategoryInput] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
